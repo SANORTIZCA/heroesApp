@@ -1,6 +1,43 @@
-<h1>Hero Layout</h1>
+<mat-sidenav-container fullscreen>
+  <!-- #sidenav es una referencia local -->
 
-<!-- Con este router outlet muestra las rutas y aqui cambian las rutas children-->
-<router-outlet></router-outlet>
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{ width:'250px' }">
+    <mat-toolbar>
+      <span>Menú</span>
+      <span class="spacer"></span>
+      <!-- Usando la referencia local en el evento click porque el componente completo tiene un método llamado toggle que permite abrir y cerrar  ese menú-->
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
 
-<h5>Footer</h5>
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let item of sidebarItems"
+        [routerLink]="item.url"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        {{ item.label }}
+
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Con este creamos el menú para mandar a llamar el menu de arriba -->
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-button>
+      Logout
+    </button>
+  </mat-toolbar>
+
+  <div class="container">
+    <!-- Con este router outlet muestra las rutas y aqui cambian las rutas children-->
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-sidenav-container>
