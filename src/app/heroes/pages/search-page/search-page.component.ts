@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-page',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styles: ``
 })
 export class SearchPageComponent {
+
+  /* FormControl hace parte de formularios reactivos */
+  public searchInput = new FormControl('');
+
 
 }

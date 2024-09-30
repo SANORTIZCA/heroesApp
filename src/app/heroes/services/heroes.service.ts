@@ -27,6 +27,9 @@ export class HeroesService {
         /* of de rxjs, es una forma de crear un observable basado en el valor que se pasa en el parentesis */
         catchError( error => of(undefined))
       )
+  }
 
+  getSuggestions(query:string):Observable<Hero[]>{
+    return this.http.get<Hero[]>(`heroes?q=${query}&_limit=6`);
   }
 }
